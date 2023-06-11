@@ -54,7 +54,7 @@ link = "<a href='#'>Link</a>"
 
 lk = escape(link)
 
-#print(lk)
+# print(lk)
 
 
 """Цикл for"""
@@ -76,4 +76,73 @@ link2 = '''<select name="cities">
 
 fr1 = Template(link2)
 prfor1 = fr1.render(cities=cities)
-print(prfor1)
+#print(prfor1)
+
+
+"""Exapmles for filtering"""
+cars = [
+    {"model": "Tesla", "price": 60000},
+    {"model": "BMW", "price": 12000},
+    {"model": "Audi", "price": 15500},
+    {"model": "Suzuki", "price": 21000},
+]
+
+tpl = "Total price of the cars {{c | sum(attribute='price')}}"
+tpl1 = "Replace {{c | replace('o', 'O')}}"
+rep = Template(tpl1)
+summ = Template(tpl)
+message = summ.render(c=cars)
+message1 = rep.render(c=cars)
+# print(message1, message, end=" ")
+
+
+"""macro"""
+
+html = '''
+{% macro input(name,value="", type="text",size=20) -%}
+    <input type= "{{type}}" name = "{{name}}" value = "{{value | e}}" size = "{{size}}" >
+{% endmacro -%}
+
+<p>{{input('username') }}
+<p>{{input('email') }}
+<p>{{input('password') }}
+
+
+'''
+
+
+mc = Template(html)
+msg4 = mc.render()
+#print(msg4)
+
+
+
+'''call'''
+
+persons = [
+{'name': 'Ronaldo','old': 38,'height': 188},
+{'name': 'Messi','old': 35,'height': 168},
+{'name': 'Benzema','old': 35,'height': 185},
+{'name': 'Mbappe','old': 24,'height': 178}]
+
+
+html1 = '''
+{% macro list_users(list_users) -%}
+<ul>
+{% for i in list_users -%}
+    <li>{{i.name}} {{caller(i)}}
+{%- endfor %}
+</ul>
+{%- endmacro %}
+
+{% call(user) list_users(users) %}
+    <ul>
+    <li>age:{{users.old}}
+    <li>height :{{user.height}}
+    </ul>
+{% endcall -%}
+'''
+
+fb = Template(html1)
+msg5 = fb.render(users = persons)
+print(msg5)
