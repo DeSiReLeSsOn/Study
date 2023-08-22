@@ -30,7 +30,7 @@ class Post(models.Model):
     status = models.CharField(
         max_length=2, choices=Status.choices, default=Status.DRAFT
     )
-    object = models.Manager()
+    objects = models.Manager()
     published = PublishedManager()
     tags = TaggableManager()
 
