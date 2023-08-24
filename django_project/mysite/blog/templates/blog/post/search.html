@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% load blog.tags %}
+{% load blog_tags %}
 
 {% block title %}Search{% endblock %}
 
@@ -17,7 +17,7 @@
                     {{ post.title }}
                 </a>
             </h4>
-            {{ post.body|markdown|truncateword_html:12}}
+            {{ post.body|markdown|truncatewords_html:12 }}
         {% empty %}
             <p>There are no results for your query.</p>
         {% endfor %}
