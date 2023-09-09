@@ -13,6 +13,8 @@ class ImageCreateForm(forms.ModelForm):
             'url': forms.HiddenInput,
         }
 
+
+
     def clean_url(self):
         url = self.cleaned_data['url']
         valid_extensions = ['jpg', 'jpeg', 'png']
@@ -30,6 +32,7 @@ class ImageCreateForm(forms.ModelForm):
         name = slugify(image.title)
         extension = image_url.rsplit('.', 1)[1].lower()
         image_name = f'{name}.{extension}'
+        # download image from the given URL
         response = requests.get(image_url)
         image.image.save(image_name,
                          ContentFile(response.content),
@@ -37,6 +40,5 @@ class ImageCreateForm(forms.ModelForm):
         if commit:
             image.save()
         return image
-
 
 
