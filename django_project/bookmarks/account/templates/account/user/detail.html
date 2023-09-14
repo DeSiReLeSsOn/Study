@@ -16,7 +16,7 @@
             follower{{ total_followers|pluralize }}
         </span>
         <a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %}un {% endif %}follow" class="follow button">
-            {% if request.user not in users.followers.all %} 
+            {% if request.user not in user.followers.all %} 
                 Follow  
             {% else %}  
                 Unfollow   
