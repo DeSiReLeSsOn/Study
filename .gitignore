@@ -1,1 +1,3 @@
-/venv_sd
+venv_sd
+.gitignore
+.idea
