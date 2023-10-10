@@ -1,16 +1,9 @@
-"""
-ASGI config for bookmarks project.
+from django.http import HttpResponse, HttpRequest, Http404
 
-It exposes the ASGI callable as a module-level variable named ``application``.
+# Create your tests here.
+def posts_list(posts, year):
+    if year > 2023 or year < 1990 :
+        raise Http404()
+    return HttpResponse(f"posts:{year}")
 
-For more information on this file, see
-https://docs.djangoproject.com/en/4.1/howto/deployment/asgi/
-"""
-
-import os
-
-from django.core.asgi import get_asgi_application
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bookmarks.settings")
-
-application = get_asgi_application()
+print(posts_list('posts', 1990))
