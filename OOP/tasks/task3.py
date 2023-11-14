@@ -13,9 +13,9 @@ class TriangleChecker:
         self.c = c 
 
     def is_triangle(self, x, y, c):
-        if type(x,y,c) != float and type(x,y,c) != int:
+        if type(self.x,self.y,self.c) != float and type(self.x,self.y,self.c) != int:
             return 1
-        elif x <= 0 and y <= 0 and c <=0:
+        elif self.x <= 0 and self.y <= 0 and self.c <=0:
             return 2
         else:
             return 3
