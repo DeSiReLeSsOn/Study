@@ -24,8 +24,8 @@
 ссылка на дом и размер скидки"""
 
 class Human:
-    default_name = 'Unknown'
     default_age = 0
+    default_name = 'Unknown'
 
     def __init__(self, name= default_name, age=default_age, money=0, house=''):
         self.name = name
@@ -40,13 +40,12 @@ class Human:
 
     @staticmethod
     def default_info():
-        return default_name, default_age
+        return Human.default_name, Human.default_age
 
 
-    def _make_deal(self, house, price):
-        self.price = price
-        if self._money >= self.price:
-            self._money = self._money - self.price
+    def make_deal(self, house, price):
+        if self._money >= price:
+            self._money = self._money - house.price 
             self._house = house
             print('Great job, deal completed!')
         else:
@@ -59,8 +58,7 @@ class Human:
 
     def buy_house(self, house,  discount=0):
         price = house.price - discount
-        if self._money >= self.price:
-            self._money = self._money - self.price
+        if self._money >= house.price:
             print('Great job, deal completed!')
         else:
             print("Not enough money for deal")
@@ -83,6 +81,7 @@ class House:
 
     def final_price(self, discount=0):
         price = self._price - discount
+        return price 
 
 
 """Задание. Часть 3. Класс SmallHouse
@@ -92,8 +91,35 @@ class House:
 
 
 class SmallHouse(House):
-    def __init__(self, area, price):
-        super().__init__(area, price)
-        self._area = '40м2'
-        self._price = price
+    def __init__(self, area='40м2', price=0):
+        self.area = area
+        self.price = price
 
+
+
+"""Часть 4. Тесты
+Вызовите справочный метод default_info() для класса Human
+ 
+Создайте объект класса Human
+ 
+Выведите справочную информацию о созданном объекте (вызовите метод info()).
+ 
+Создайте объект класса SmallHouse
+ 
+Попробуйте купить созданный дом, убедитесь в получении предупреждения.
+ 
+Поправьте финансовое положение объекта - вызовите метод earn_money()
+ 
+Снова попробуйте купить дом
+ 
+Посмотрите, как изменилось состояние объекта класса Human"""
+
+
+
+print(Human.default_info())
+hm = Human('Jon', 35, 3600)
+print(hm.info())
+shs = SmallHouse(price=1444)
+print(hm.make_deal(shs,shs.price), hm.buy_house(shs))
+hm.earn_money(1500)
+print(hm.info())
