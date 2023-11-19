@@ -1,21 +1,27 @@
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
-n ,m = len(a), len(b)
-i, j = 0, 0 
-res = []
+def merge_list(a, b):
+    c = list()
+    i, j = 0, 0
+    while i < len(a) and j < len(b):
+        if a[i] < b[j]:
+            c.append(a[i])
+            i += 1
+        else:
+            c.append(b[j])
+            j += 1
+    if i < len(a):
+        c += a[i:]
+    if j < len(b):
+        c += b[j:]
+    return c
 
-while i < n and j < m:
-    if a[i] < b[j]:
-        res.append(a[i])
-        i += 1
-    else:
-        res.append(b[j])
-        j += 1
-while i < n:
-    res.append(a[i])
-    i += 1
-while j < m:
-    res.append(b[j])
-    j += 1
+def merge_sort(s):
+    if len(s) == 1:
+        return s
+    middle = len(s)//2
+    left = merge_sort(s[middle:])
+    right = merge_sort(s[:middle])
+    return merge_list(left, right)
 
-print(*res)
+lst = list(map(int, input().split()))
+n = len(lst)
+print(merge_sort(lst))
