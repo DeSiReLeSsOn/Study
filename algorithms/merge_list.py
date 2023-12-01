@@ -8,10 +8,8 @@ def merge_list(a, b):
         else:
             c.append(b[j])
             j += 1
-    if i < len(a):
-        c += a[i:]
-    if j < len(b):
-        c += b[j:]
+    c += a[i:] + b[j:]
+
     return c
 
 def merge_sort(s):
@@ -23,5 +21,4 @@ def merge_sort(s):
     return merge_list(left, right)
 
 lst = list(map(int, input().split()))
-n = len(lst)
 print(merge_sort(lst))
