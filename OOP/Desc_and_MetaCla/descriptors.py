@@ -54,3 +54,8 @@ pt = Point(1, 2)
 pt2 = Point(10, 20)
 print( pt.coordX, pt.coordY )
 print( pt2.coordX, pt2.coordY )
+
+
+import math
+fun = lambda x : 1 if x == 1 else math.ceil(math.sinh(fun (x-1)))
+print(fun(5))
