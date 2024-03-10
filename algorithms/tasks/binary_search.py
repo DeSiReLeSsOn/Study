@@ -10,10 +10,10 @@ def binary_search(arr, target):
         elif arr[mid] < target:
             low = mid + 1
         else:
-            low = mid -1 
+            high = mid -1 
     return -1 
 
-arr = [1, 2, 3, 4, 5]
+arr = [1, 2, 3, 4, 5, 6, 7, 1, 1000, 2222452525325235235, 45566666, -100]
  
-target = 3
+target = 1000
 print(binary_search(arr, target))

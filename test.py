@@ -1,17 +1,43 @@
-def binary_search(s):
-    start = 0 
-    end = 0 
-    maxLen = 0 
-    res = set()
-    while end < len(s):
-        if s[end] not in set:
-            res.add(s[end])
-            end += 1
-            maxLen = max(maxLen, end - start) 
+def m(nums, target):
+    low = 0 
+    high = len(nums) - 1
+    while low <= high:
+        mid = (low + high)//2 
+        if nums[mid] == target:
+            return mid 
+        elif nums[mid] < target:
+            low = mid + 1
         else:
-            res.remove(s[start])
-            start += 1 
-    return maxLen
+            high = mid - 1
+    return -1
+
+    
+
+    
+
+
+
+
+    
+    
+
+
+   
+    
+
+
+        
+
+    
+
+   
+   
+  
+      
+    
+   
+    
+  
 
    
   
@@ -24,9 +50,9 @@ def binary_search(s):
             
 
 
-a = [2,7,11,15]
+a = [2,7,11,15, -1]
 b = 15
-print(binary_search(a, b))
+print(m(a, b))
 
 
 
