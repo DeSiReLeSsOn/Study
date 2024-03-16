@@ -1,22 +1,14 @@
-def m(nums, target):
-    low = 0 
-    high = len(nums) - 1
-    while low <= high:
-        mid = (low + high)//2 
-        if nums[mid] == target:
-            return mid 
-        elif nums[mid] < target:
-            low = mid + 1
-        else:
-            high = mid - 1
-    return -1
+def get_list_sum(*args, **kwargs):
+    for i in args:
+        res = sum([float(u) for u in i])
+        return res
 
     
 
     
 
 
-
+print(get_list_sum(['12.1235677777', '0.1223345', '1.0081733']))
 
     
     
@@ -49,10 +41,6 @@ def m(nums, target):
     
             
 
-
-a = [2,7,11,15, -1]
-b = 15
-print(m(a, b))
 
 
 
