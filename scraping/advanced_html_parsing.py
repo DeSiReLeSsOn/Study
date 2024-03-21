@@ -54,7 +54,9 @@ bs = BeautifulSoup(html, 'html.parser')
 """
 #print(bs.find('img', {'src':'../img/gifts/img1.jpg'}).parent.previous_sibling.get_text())
 
-
+"""Этот код выводит только те относительные пути к
+изображениям, которые начинаются с ../img/gifts/img и
+заканчиваются на .jpg"""
 images = bs.find_all('img', {'src':re.compile('..\/img\/gifts/img.*.jpg')})
 for image in images:
     print(image['src'])
