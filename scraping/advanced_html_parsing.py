@@ -1,5 +1,6 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import re
 #html = urlopen('http://www.pythonscraping.com/pages/warandpeace.html')
 #bs = BeautifulSoup(html, 'html.parser')
 #print(bs)
@@ -51,6 +52,11 @@ bs = BeautifulSoup(html, 'html.parser')
 картинке ../img/gifts/img1.jpg (в данном случае цена
 составляет 15 долларов).
 """
-print(bs.find('img', {'src':'../img/gifts/img1.jpg'}).parent.previous_sibling.get_text())
+#print(bs.find('img', {'src':'../img/gifts/img1.jpg'}).parent.previous_sibling.get_text())
+
+
+images = bs.find_all('img', {'src':re.compile('..\/img\/gifts/img.*.jpg')})
+for image in images:
+    print(image['src'])
 
 
