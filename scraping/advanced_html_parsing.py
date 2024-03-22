@@ -58,7 +58,15 @@ bs = BeautifulSoup(html, 'html.parser')
 изображениям, которые начинаются с ../img/gifts/img и
 заканчиваются на .jpg"""
 images = bs.find_all('img', {'src':re.compile('..\/img\/gifts/img.*.jpg')})
-for image in images:
-    print(image['src'])
+#for image in images:
+#    print(image['src'])
+
+"""следующая функция возвращает все теги,
+имеющие ровно два атрибута"""
+print(bs.find_all(lambda tag: len(tag.attrs) == 2))
 
 
+#находит тег с текстом 'Or maybe he\'s only resting?'
+print(bs.find_all(lambda tag: tag.get_text() == 'Or maybe he\'s only resting?'))
+#То же самое можно выполнить и без лямбда-функции
+print(bs.find_all('', text='Or maybe he\'s only resting?'))
