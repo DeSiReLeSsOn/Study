@@ -28,7 +28,14 @@ def authenticate_user(credentials: HTTPBasicCredentials= Depends(security)):
 
 
 #Шаг 5: Задайте логику получения информации о пользователе и его пароле
+def get_user_from_db(username: str):
+    for user in USER_DATA:
+        if user.username == username:
+            return user 
+        return None
 
+
+#Шаг 6: Защитите конечные точки с помощью аутентификации
 @app.get("/protected_resource/")
 def get_protected_resource(user: User = Depends(authenticate_user)):
     return {"message": "You have access to the protected resource!", "user_info": user}
